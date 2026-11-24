@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Something Special for My Bubuu</title>
+<style>
+:root{--pink:#f8c8dc;--rose:#bd557f;--deep:#74344f;--cream:#fff8f4;--blue:#dceeff;--ink:#533846}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:radial-gradient(circle at top,#fff7fb,#fce5ef 55%,#f7d9e7);min-height:100vh}
+button,input,textarea{font:inherit}
+button{border:0;border-radius:999px;padding:13px 22px;background:var(--rose);color:white;cursor:pointer;box-shadow:0 5px 14px #bd557f35;transition:.2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.05)}
+button.secondary{background:#fff;color:var(--rose);border:1px solid #e8a9c2}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.wrap{width:min(900px,94vw);margin:0 auto;padding:24px 0 48px}
+.page{display:none;min-height:calc(100vh - 48px);align-items:center;justify-content:center}
+.page.active{display:flex}
+.panel{width:100%;background:#ffffffd9;border:1px solid #fff;box-shadow:0 18px 55px #a64f7420;border-radius:28px;padding:clamp(22px,5vw,46px);text-align:center;backdrop-filter:blur(8px)}
+.kicker{letter-spacing:3px;text-transform:uppercase;font:12px Arial,sans-serif;color:#b65a80}
+h1{font-size:clamp(2.2rem,7vw,4.5rem);line-height:1.06;color:var(--deep);margin:14px 0}
+h2{font-size:clamp(1.7rem,5vw,2.7rem);color:var(--deep);margin:8px 0 18px}
+p{font-size:1.08rem;line-height:1.7}
+.small{font:13px Arial,sans-serif;color:#936579}
+.gift{font-size:100px;display:block;filter:drop-shadow(0 12px 8px #a34e6b22);animation:bob 2s infinite ease-in-out}
+@keyframes bob{50%{transform:translateY(-9px) rotate(2deg)}}
+.envelope{margin:24px auto 12px;width:min(270px,70vw);height:170px;background:#f3a9c6;position:relative;border-radius:12px;box-shadow:0 12px 25px #a64f7430;display:grid;place-items:center;cursor:pointer;overflow:hidden}
+.envelope:before{content:"";position:absolute;inset:0;background:#f8c5d8;clip-path:polygon(0 0,100% 0,50% 60%)}
+.envelope:after{content:"";position:absolute;inset:0;background:#e98fb3;clip-path:polygon(0 100%,50% 48%,100% 100%)}
+.seal{z-index:2;background:#fff2f7;color:#a63e6b;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:25px;box-shadow:0 2px 8px #94415c33}
+input[type=password],input[type=text],textarea{border:1px solid #e8b5c9;border-radius:14px;padding:12px 14px;background:#fffafd;color:var(--ink);width:min(320px,100%);outline-color:#c86b91}
+textarea{min-height:76px;resize:vertical;width:100%}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center}
+.letter{max-width:650px;margin:20px auto;background:#fffaf0;border:1px solid #f1dfc8;border-radius:8px;padding:clamp(22px,5vw,42px);box-shadow:0 10px 30px #79513a16;text-align:left;line-height:1.9;white-space:pre-line}
+.teddies{font-size:clamp(70px,14vw,130px);margin:15px 0;letter-spacing:-20px}
+.cake{width:230px;margin:25px auto 12px;position:relative;padding-top:42px}
+.layer{height:55px;margin:auto;border-radius:14px 14px 18px 18px;background:linear-gradient(90deg,#542b28,#8b4a3e 45%,#4d2828);border:3px solid #c78b73;box-shadow:inset 0 8px 0 #d7a08b,0 7px 9px #5a2a2828;position:relative}
+.layer:nth-child(2){width:190px}.layer:nth-child(3){width:145px}
+.candles{position:absolute;top:0;left:0;right:0;display:flex;justify-content:center;gap:25px}
+.candle{height:48px;width:12px;background:repeating-linear-gradient(135deg,#fff 0 6px,#ef91b5 6px 12px);border-radius:4px;position:relative;cursor:pointer}
+.flame{position:absolute;top:-18px;left:1px;width:10px;height:17px;background:radial-gradient(ellipse at 50% 70%,#fff6a4,#ff9b32 65%,transparent 70%);border-radius:50% 50% 45% 45%;animation:flicker .6s infinite alternate}
+.candle.off .flame{display:none}
+@keyframes flicker{to{transform:scale(.8) rotate(8deg)}}
+.smoke{position:fixed;inset:0;background:radial-gradient(ellipse at center,#fff 0%,#fff 55%,#fff0 100%);opacity:0;pointer-events:none;z-index:20;transition:opacity 1.4s}
+.smoke.show{opacity:1}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;text-align:left;margin:22px 0}
+.photo-card{background:#fff;border:1px solid #f0d5e1;border-radius:16px;padding:12px;box-shadow:0 5px 16px #a64f7410}
+.photo-card img{width:100%;height:170px;object-fit:cover;border-radius:10px;background:#fff0f6;display:block}
+.photo-card input{width:100%;font:12px Arial,sans-serif;margin:8px 0}
+.photo-card textarea{font-size:14px}
+.heart-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:520px;margin:24px auto}
+.heart{background:#fff0f6;border:1px solid #f1bfd2;color:#bf4f7b;border-radius:20px;padding:20px 8px;min-height:115px;font-size:34px}
+.heart span{display:block;font:12px Arial,sans-serif;color:#805266;margin-top:8px}
+.cat-scene{font-size:clamp(55px,12vw,100px);display:flex;justify-content:center;gap:15px;align-items:center;margin:22px 0;animation:bob 2.2s infinite}
+.musicbox{background:#eef6ff;border:1px solid #c9def3;padding:18px;border-radius:18px;margin:20px auto;max-width:520px}
+.musicbox a{color:#326b9b;overflow-wrap:anywhere}
+.footer{font:12px Arial,sans-serif;color:#a77a8c;margin-top:25px}
+.nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}
+.hint{font-style:italic;color:#8b5a70;background:#fff3f8;border-radius:14px;padding:13px;margin:14px auto;max-width:570px}
+.typing{min-height:180px}
+@media(max-width:520px){.panel{padding:23px 17px}.heart-grid{gap:7px}.heart{padding:14px 4px;font-size:29px}.photo-card img{height:145px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="page active" id="p1"><div class="panel">
+<div class="kicker">A little surprise made with love</div>
+<span class="gift">🎁</span>
+<h1>Something Special<br>for My Bubuu</h1>
+<p>There is a tiny surprise waiting just for you…</p>
+<button onclick="go(2)">Tap to unwrap 💗</button>
+<div class="footer">Made with love, from your Baykoo 🎀</div>
+</div></section>
+
+<section class="page" id="p2"><div class="panel">
+<div class="kicker">A secret is waiting</div><h2>One little envelope, just for you 💌</h2>
+<div class="envelope" onclick="document.getElementById('pinbox').focus()"><div class="seal">♥</div></div>
+<p>Tap the envelope, then enter our special 4-digit code.</p>
+<div class="hint">“20 was the beginning of a beautiful question, and 23 was the beginning of forever... now unlock your surprise, my love!”</div>
+<div class="row"><input id="pinbox" type="password" inputmode="numeric" maxlength="4" placeholder="Enter 4-digit PIN" aria-label="4 digit PIN"><button onclick="unlock()">Unlock 💗</button></div>
+<p id="pinmsg" class="small" aria-live="polite"></p>
+</div></section>
+
+<section class="page" id="p3"><div class="panel">
+<div class="kicker">A note from your Baykoo</div><h2>Happy Birthday, mere patidev jii! 💗</h2>
+<div class="letter">My dearest Bubuu,
+
+Happy Birthday mere pyaare patidev jiiii! 🥹
+
+I hope your day is as lovely and special as you are. Thank you for being you, for the little moments, the smiles, and all the memories we keep making.
+
+I wish you happiness, peace, good health, and beautiful reasons to smile every single day. No matter how ordinary a day seems, you make it feel special.
+
+I loveeeeeeee youuuuuuu sooooooo muchhhhhhh, bacchaaaa... 🎀🫀
+
+Forever cheering for you,
+Your Baykoo 💗</div>
+<p style="font-size:1.5rem;color:#b84f7a">I loveeeeeeee youuuuuuu sooooooo muchhhhhhh bacchaaaa... 🎀🫀</p>
+<div class="nav"><button onclick="go(4)">Tap to next →</button></div>
+</div></section>
+
+<section class="page" id="p4"><div class="panel">
+<div class="kicker">A birthday hug in teddy form</div>
+<div class="teddies">🧸 🧸</div>
+<h2>Happy Birthday, mere Bacchuu! 🎂</h2>
+<p>Two little teddy bears brought you a cake, a wish, and a whole lot of love.</p>
+<div style="font-size:65px">🎂💗🎈</div>
+<div class="nav"><button onclick="go(5)">Tap to next →</button></div>
+</div></section>
+
+<section class="page" id="p5"><div class="panel">
+<div class="kicker">Make a wish, birthday boy</div><h2>A chocolate cake just for you 🍫</h2>
+<p>Tap each candle to blow it out!</p>
+<div class="cake" aria-label="Three layer chocolate cake">
+<div class="candles"><div class="candle" onclick="blow(this)"><i class="flame"></i></div><div class="candle" onclick="blow(this)"><i class="flame"></i></div><div class="candle" onclick="blow(this)"><i class="flame"></i></div></div>
+<div class="layer"></div><div class="layer"></div><div class="layer"></div>
+</div>
+<p id="candlemsg" class="small">3 candles are still glowing ✨</p>
+<div class="nav"><button id="cakeNext" disabled onclick="smokeNext()">Tap to next →</button></div>
+</div></section>
+
+<section class="page" id="p6"><div class="panel">
+<div class="kicker">Little pieces of our story</div><h2>Our Sweet Memories 📸</h2>
+<p>Choose 5–6 photos from your phone and add a little note for each one. Your photos stay on this device in this page; they are not uploaded anywhere.</p>
+<div class="photos" id="photoGrid"></div>
+<div class="nav"><button onclick="go(7)">Tap to next →</button></div>
+</div></section>
+
+<section class="page" id="p7"><div class="panel">
+<div class="kicker">A letter for you, my sweetheart</div><h2>Open this with all your heart 💌</h2>
+<div class="envelope" onclick="typeLetter()"><div class="seal">💗</div></div>
+<p>Tap the envelope to reveal your letter.</p>
+<div class="letter typing" id="longLetter">My sweetest Bubuu,
+
+</div>
+<div class="nav"><button onclick="go(8)">Tap to next →</button></div>
+</div></section>
+
+<section class="page" id="p8"><div class="panel">
+<div class="kicker">Six little reasons</div><h2>Six things I adore about you 💞</h2>
+<p>Tap each heart to reveal a little appreciation.</p>
+<div class="heart-grid">
+<button class="heart" onclick="reveal(this,'Your kindness makes little moments feel beautiful.')">♡<span>Tap me</span></button>
+<button class="heart" onclick="reveal(this,'Your smile can brighten an ordinary day.')">♡<span>Tap me</span></button>
+<button class="heart" onclick="reveal(this,'I appreciate the way you listen and understand.')">♡<span>Tap me</span></button>
+<button class="heart" onclick="reveal(this,'Your patience and care mean so much.')">♡<span>Tap me</span></button>
+<button class="heart" onclick="reveal(this,'Your determination inspires me.')">♡<span>Tap me</span></button>
+<button class="heart" onclick="reveal(this,'The little things that make you uniquely you.')">♡<span>Tap me</span></button>
+</div>
+<div class="nav"><button onclick="go(9)">Tap to next →</button></div>
+</div></section>
+
+<section class="page" id="p9"><div class="panel">
+<div class="kicker">A tiny birthday concert</div><h2>Meow-meow birthday wishes! 🐾</h2>
+<div class="cat-scene"><span>🐱</span><span>🎂</span><span>🐱</span></div>
+<p>These little kitties brought you a cake and a birthday song. Press play for our song!</p>
+<div class="musicbox">
+<strong>💙 Blue — Yung Kai</strong>
+<p class="small">Tap below to open the song on YouTube. You can come back here after playing it.</p>
+<a href="https://youtu.be/IpFX2vq8HKw?si=OWihZ4l5OHVvR1BU" target="_blank" rel="noopener">▶ Play Blue on YouTube</a>
+</div>
+<div style="font-size:42px">🎉🐾🎈</div>
+<div class="nav"><button onclick="go(10)">Tap to next →</button></div>
+</div></section>
+
+<section class="page" id="p10"><div class="panel">
+<div class="kicker">One last little thing…</div>
+<div class="cat-scene"><span>🐈</span><span>💐</span></div>
+<h1>Once Again,<br>Happy Birthday<br>My Bubuuuu! 💗</h1>
+<p>May your days be full of laughter, lovely surprises, and all the happiness you deserve.</p>
+<div style="font-size:55px">🌷🐱🎀</div>
+<h2 style="font-size:1.7rem">Small surprise from your Baykoooo 💌</h2>
+<p class="small">Made with lots of love, just for you.</p>
+<div class="nav"><button class="secondary" onclick="go(1)">Replay from the beginning ↺</button></div>
+</div></section>
+</div>
+<div class="smoke" id="smoke"></div>
+<script>
+let blown=0, typed=false;
+function go(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function unlock(){const v=document.getElementById('pinbox').value;const m=document.getElementById('pinmsg');if(v==='2023'){m.textContent='Unlocked! A little love is on its way… 💗';setTimeout(()=>go(3),500);}else{m.textContent='Not quite, my love. Try the hint again 💌';}}
+document.getElementById('pinbox').addEventListener('keydown',e=>{if(e.key==='Enter')unlock();});
+function blow(el){if(el.classList.contains('off'))return;el.classList.add('off');blown++;document.getElementById('candlemsg').textContent=(3-blown)+' candles are still glowing ✨';if(blown===3){document.getElementById('candlemsg').textContent='Wish made! All candles are out. 💨';document.getElementById('cakeNext').disabled=false;}}
+function smokeNext(){const s=document.getElementById('smoke');s.classList.add('show');setTimeout(()=>{go(6);s.classList.remove('show');},1250);}
+function reveal(btn,msg){btn.innerHTML='💗<span>'+msg+'</span>';btn.style.fontSize='23px';}
+function typeLetter(){if(typed)return;typed=true;const target=document.getElementById('longLetter');const text=`My sweetest Bubuu,
+
+I hope you always know how loved and appreciated you are. I treasure the laughter, the silly little moments, the conversations, and every memory that becomes part of our story.
+
+Thank you for being someone I can make memories with. I hope this new year of your life brings you new adventures, peaceful days, big smiles, and dreams coming true.
+
+On your birthday, I wish you all the good things your heart is hoping for. Keep being your wonderful self.
+
+Happy Birthday, my sweetheart. I love you so, so much. 🎀🫀
+
+Always sending you love,
+Your Baykoo 💗`;
+target.textContent='';let i=0;const timer=setInterval(()=>{target.textContent+=text.charAt(i++);if(i>=text.length)clearInterval(timer);},28);}
+const grid=document.getElementById('photoGrid');
+for(let i=1;i<=6;i++){const card=document.createElement('div');card.className='photo-card';card.innerHTML=`<img id="preview${i}" alt="Memory photo ${i}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260'%3E%3Crect width='100%25' height='100%25' fill='%23fff0f6'/%3E%3Ctext x='50%25' y='48%25' text-anchor='middle' font-size='48' fill='%23c36b91'%3E♡%3C/text%3E%3Ctext x='50%25' y='68%25' text-anchor='middle' font-size='17' fill='%23936579'%3EOur memory ${i}%3C/text%3E%3C/svg%3E"><input type="file" accept="image/*" aria-label="Choose memory photo ${i}" onchange="loadPhoto(event,${i})"><textarea placeholder="Write a little note for this memory..."></textarea>`;grid.appendChild(card);}
+function loadPhoto(event,n){const file=event.target.files&&event.target.files[0];if(file){const url=URL.createObjectURL(file);document.getElementById('preview'+n).src=url;}}
+</script>
+</body>
+</html>
